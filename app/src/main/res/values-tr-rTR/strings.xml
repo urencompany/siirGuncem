@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Siirler</string>
+
+    <array name="tab_name">
+        <item>Şairler</item>
+        <item>Öne Çıkanlar</item>
+        <item>Ara</item>
+    </array>
+
+    <string name="loading">Yükleniyor</string>
+    <string name="UPPERYES">EVET</string>
+    <string name="UPPERNO">HAYIR</string>
+
+</resources>

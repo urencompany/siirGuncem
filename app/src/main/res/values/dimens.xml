@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="edittextsize">15sp</dimen>
+    <dimen name="default_elevation">8dp</dimen>
+    <dimen name="toolbarTextSize">20sp</dimen>
+
+</resources>

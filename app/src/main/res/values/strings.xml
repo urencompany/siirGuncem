@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Siirler</string>
+
+    <string name="ADMOB_APP_ID">ca-app-pub-7227467199436307~6755772355</string>
+    <!--<string name="ADMOB_BANNER_AD_UNIT_ID">ca-app-pub-7227467199436307/9074283706</string>
+    <string name="ADMOB_INTERSITITIAL_AD_UNIT_ID">ca-app-pub-7227467199436307/6220765946</string>-->
+
+
+    <!--Test-->
+    <string name="ADMOB_BANNER_AD_UNIT_ID">ca-app-pub-7227467199436307/9787639112</string>
+    <string name="ADMOB_INTERSITITIAL_AD_UNIT_ID">ca-app-pub-7227467199436307/8255065592</string>
+
+    <array name="tab_name">
+        <item>Poets</item>
+        <item>Home</item>
+        <item>Search</item>
+    </array>
+
+    <string name="loading">Loading</string>
+    <string name="UPPERYES">YES</string>
+    <string name="UPPERNO">NO</string>
+
+</resources>
