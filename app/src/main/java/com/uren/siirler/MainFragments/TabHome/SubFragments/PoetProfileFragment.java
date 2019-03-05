@@ -24,8 +24,6 @@ import com.uren.siirler.MainFragments.BaseFragment;
 import com.uren.siirler.MainFragments.TabHome.Adapters.PoemAdapter;
 import com.uren.siirler.MainFragments.TabHome.Adapters.SinglePoemAdapter;
 import com.uren.siirler.R;
-import com.uren.siirler.Singleton.SingletonSairList;
-import com.uren.siirler.Singleton.SingletonSiirList;
 import com.uren.siirler.Utils.AdMobUtil.AdMobUtils;
 import com.uren.siirler.Utils.ClickableImage.ClickableImageView;
 import com.uren.siirler.Utils.ItemAnimator;

@@ -123,7 +123,7 @@ public class PoetsFragment extends BaseFragment
     private void init() {
         MobileAds.initialize(getContext(), getActivity().getResources().getString(R.string.ADMOB_APP_ID));
         AdMobUtils.loadBannerAd(adView);
-        AdMobUtils.loadInterstitialAd(getContext());
+        //AdMobUtils.loadInterstitialAd(getContext());
         imgBack.setVisibility(View.VISIBLE);
         imgBack.setOnClickListener(this);
         imgOptions.setVisibility(View.GONE);

@@ -24,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -50,7 +49,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -87,7 +85,6 @@ public class HomeFragment extends BaseFragment
     DrawerLayout drawerLayout;
     @BindView(R.id.navViewLayout)
     NavigationView navViewLayout;
-
 
 
     @Override
@@ -177,17 +174,17 @@ public class HomeFragment extends BaseFragment
     private void setUpRecyclerView(ArrayList<Siir> siirArrayList, ArrayList<Siir> popularSiirList, ArrayList<Sair> sairArrayList) {
 
         feedAdapter.addHeader(popularSiirList, sairArrayList);
-        feedAdapter.addVerticalItem(siirArrayList, sairArrayList);
 
-        setBannerAds(siirArrayList.size());
+        ArrayList<Object> bannerAds = getBannerAds(siirArrayList.size());
+        feedAdapter.addVerticalItem(siirArrayList, bannerAds, sairArrayList);
 
     }
 
-    private void setBannerAds(int size) {
+    private ArrayList<Object> getBannerAds(int size) {
 
         ArrayList<Object> objectList = new ArrayList<>();
 
-        for(int i=0; i<size ; i += ITEM_PER_AD ){
+        for (int i = 0; i < size; i += ITEM_PER_AD) {
             final AdView adView = new AdView(getContext());
             adView.setAdSize(AdSize.BANNER);
             adView.setAdUnitId(getString(R.string.ADMOB_BANNER_AD_UNIT_ID));
@@ -195,7 +192,8 @@ public class HomeFragment extends BaseFragment
             objectList.add(adView);
         }
 
-        feedAdapter.addAdd(objectList);
+        return objectList;
+
 
     }
 
@@ -294,7 +292,8 @@ public class HomeFragment extends BaseFragment
             //Liste dolmadıysa normal şiirlerden random şiirler eklendi
             setStartTime();
             Collections.shuffle(siirArrayList);
-            for (int i = 0; i < NUMBER_OF_VERTICAL_POEMS - resultSiirList.size(); i++) {
+            int availableItems = resultSiirList.size();
+            for (int i = 0; i < NUMBER_OF_VERTICAL_POEMS - availableItems; i++) {
                 resultSiirList.add(siirArrayList.get(i));
             }
             setEndTime();

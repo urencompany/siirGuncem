@@ -563,7 +563,7 @@ public class FeedAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void addVerticalItem(ArrayList<Siir> arrayListSiir, ArrayList<Sair> arrayListSair) {
+    public void addVerticalItem(ArrayList<Siir> arrayListSiir, ArrayList<Object> bannerAds, ArrayList<Sair> arrayListSair) {
         try {
             if (arrayListSiir != null && arrayListSair != null) {
                 verticalSiirList = arrayListSiir;
@@ -572,16 +572,34 @@ public class FeedAdapter extends RecyclerView.Adapter {
                     setSairHashMap();//header'da eklendi.
                 }
                 int initialSize = objectList.size();
-                objectList.addAll(arrayListSiir);
+                int siirCounter = 0;
+                int bannerCounter = 0;
 
-                notifyItemRangeInserted(initialSize, arrayListSiir.size());
+                for (int i = 0; i < arrayListSiir.size() + bannerAds.size(); i++) {
+
+                    int position = i+1;
+
+                    if (position % ITEM_PER_AD == 0) {
+                        if(bannerCounter <bannerAds.size()){
+                            objectList.add(bannerAds.get(bannerCounter));
+                            bannerCounter++;
+                        }
+                    }else{
+                        if(siirCounter <arrayListSiir.size()){
+                            objectList.add(arrayListSiir.get(siirCounter));
+                            siirCounter++;
+                        }
+                    }
+                }
+
+                notifyItemRangeInserted(initialSize, objectList.size() - initialSize);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void addAdd(ArrayList<Object> objectArrayList) {
+    public void addAd(ArrayList<Object> objectArrayList) {
         try {
             if (objectArrayList != null) {
                 int initialSize = objectList.size();
