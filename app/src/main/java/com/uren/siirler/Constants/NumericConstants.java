@@ -203,6 +203,6 @@ public class NumericConstants {
     public static final int COMING_FROM_NORMAL_POEM = 1;
 
     //Banner item cnt
-    public static final int ITEM_PER_AD = 4;
+    public static final int ITEM_PER_AD = 25;
 
 }

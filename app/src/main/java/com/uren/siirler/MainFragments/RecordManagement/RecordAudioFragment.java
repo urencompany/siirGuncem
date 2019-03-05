@@ -286,9 +286,9 @@ public class RecordAudioFragment extends BaseFragment
     private void setRecordingVariables() {
         filePath = AUDIO_FILE_PATH;
         color = ContextCompat.getColor(getContext(), R.color.red);
-        source = AudioSource.VOICE_RECOGNITION;
+        source = AudioSource.MIC;
         channel = AudioChannel.STEREO;
-        sampleRate = AudioSampleRate.HZ_8000;
+        sampleRate = AudioSampleRate.HZ_11025;
         autoStart = false;
         keepDisplayOn = true;
 

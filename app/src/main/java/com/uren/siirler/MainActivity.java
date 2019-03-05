@@ -47,9 +47,9 @@ public class MainActivity extends FragmentActivity
 
 
     private int[] mTabIconsSelected = {
-            //R.drawable.tab_quran,
-            R.drawable.tab_quran
-            //R.drawable.tab_quran
+            //R.drawable.icon_poem,
+            R.drawable.icon_poem
+            //R.drawable.icon_poem
     };
 
     private FragNavController mNavController;
