@@ -1,0 +1,181 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/rlMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rlContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:id="@+id/llPoet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="30dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/txtBaslik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Başlık"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtSiir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="start"
+                    android:text="Şiir"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="40dp">
+
+                    <TextView
+                        android:id="@+id/txtSair"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:text="Şair"
+                        android:textColor="@color/fab_color_pressed" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <com.uren.siirler.Utils.ClickableImage.ClickableImageView
+            android:id="@+id/imgCancel"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="20dp"
+            android:alpha="0.5"
+            android:src="@drawable/black_cancel_icon" />
+
+
+        <FrameLayout
+            android:id="@+id/seekbarLayout"
+            android:layout_width="32dp"
+            android:layout_height="170dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/imgOptions"
+            android:layout_marginTop="59dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:visibility="visible">
+
+            <SeekBar
+                android:id="@+id/seekbar"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:progressTint="@color/White"
+                android:rotation="270"
+                android:thumbTint="@color/White"
+                android:thumbTintMode="src_in" />
+
+        </FrameLayout>
+
+        <com.uren.siirler.Utils.ClickableImage.ClickableImageView
+            android:id="@+id/imgOptions"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="20dp"
+            android:src="@drawable/icon_more_vertical" />
+
+        <LinearLayout
+            android:id="@+id/llSelection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/imgOptions"
+            android:layout_below="@+id/imgOptions"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <com.uren.siirler.Utils.ClickableImage.ClickableImageView
+                android:id="@+id/imgBackArrrow"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="15dp" />
+
+            <ImageView
+                android:id="@+id/imgSelectedOption"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:padding="15dp" />
+
+            <com.uren.siirler.Utils.ClickableImage.ClickableImageView
+                android:id="@+id/imgForwardArrow"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:padding="15dp" />
+
+        </LinearLayout>
+
+        <com.uren.siirler.Utils.ClickableImage.ClickableImageView
+            android:id="@+id/imgForward"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="20dp"
+            android:src="@drawable/icon_whatsapp" />
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true">
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</FrameLayout>

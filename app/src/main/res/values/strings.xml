@@ -1,23 +1,77 @@
 <resources>
-    <string name="app_name">Siirler</string>
+    <string name="app_name">Poem Diary</string>
 
     <string name="ADMOB_APP_ID">ca-app-pub-7227467199436307~6755772355</string>
-    <!--<string name="ADMOB_BANNER_AD_UNIT_ID">ca-app-pub-7227467199436307/9074283706</string>
-    <string name="ADMOB_INTERSITITIAL_AD_UNIT_ID">ca-app-pub-7227467199436307/6220765946</string>-->
-
+    <!--<string name="ADMOB_BANNER_AD_UNIT_ID">ca-app-pub-7227467199436307/9787639112</string>
+    <string name="ADMOB_INTERSITITIAL_AD_UNIT_ID">ca-app-pub-7227467199436307/8255065592</string>-->
 
     <!--Test-->
-    <string name="ADMOB_BANNER_AD_UNIT_ID">ca-app-pub-7227467199436307/9787639112</string>
-    <string name="ADMOB_INTERSITITIAL_AD_UNIT_ID">ca-app-pub-7227467199436307/8255065592</string>
+    <string name="ADMOB_BANNER_AD_UNIT_ID">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ADMOB_INTERSITITIAL_AD_UNIT_ID">ca-app-pub-3940256099942544/1033173712</string>
 
     <array name="tab_name">
-        <item>Poets</item>
+        <!--item>Search</item-->
         <item>Home</item>
-        <item>Search</item>
+        <!--item>Poets</item-->
     </array>
 
     <string name="loading">Loading</string>
     <string name="UPPERYES">YES</string>
     <string name="UPPERNO">NO</string>
+
+    <string name="poems">Poems</string>
+    <string name="poets">Poets</string>
+    <string name="share">SHARE</string>
+    <string name="seeMore">Read More</string>
+    <string name="allPoems">Poems</string>
+    <string name="suggestions">You might like also</string>
+    <string name="search">Search poem, poet..</string>
+    <string name="THERE_IS_NO_SEARCH_RESULT">No results found.</string>
+
+    <string name="allPoets">All Poets</string>
+    <string name="myFavorites">My favorites</string>
+    <string name="noFavorite">No favorite yet...</string>
+    <string name="searchDetail">Search poem, poet..</string>
+    <string name="rateApp">Rate App</string>
+    <string name="myRecordings">My Recordings</string>
+
+    <string name="backgroundImage">Background</string>
+    <string name="textColor">Text Color</string>
+    <string name="textSize">Text Size</string>
+    <string name="textFont">Text Font</string>
+
+    <string name="todaySpecialPoems">Today\'s special</string>
+    <string name="forYouPoems">For you</string>
+
+    <string name="aar_save">Save</string>
+    <string name="aar_paused">Paused</string>
+    <string name="aar_recording">Recording</string>
+    <string name="aar_playing">Playing</string>
+    <string name="txtRecord">VOCALIZE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="apply">APPLY</string>
+
+    <string name="delete">Delete</string>
+    <string name="deleteSure">This record will be delete. Are you sure to delete?</string>
+    <string name="share2">Share</string>
+    <string name="renameFileTitle">Rename File</string>
+    <string name="fileAlreadyExist">File Already Exist</string>
+    <string name="overrideFile">This file name already exist, override file?</string>
+    <string name="recordSuccessful">Record successfully saved</string>
+
+    <string-array name="sounds">
+        <item>None</item>
+        <item>Akıcı Fon 1</item>
+        <item>Akıcı Fon 2</item>
+        <item>Duygusal Fon 1</item>
+        <item>Duygusal Fon 2</item>
+        <item>Duygusal Fon 3</item>
+        <item>Al Ömrümü Koy Ömrünün Üstüne</item>
+        <item>Ay düşünce</item>
+        <item>Bir küçük meyve için dalı incitme</item>
+        <item>Enstrüman Fon</item>
+        <item>Mona Roza</item>
+        <item>Vazgeçtim Ney</item>
+    </string-array>
 
 </resources>

@@ -3,10 +3,15 @@ package com.uren.siirler.Utils;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -14,9 +19,18 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
+import android.view.Display;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.uren.siirler.R;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by f22labs on 07/03/17.
@@ -24,6 +38,8 @@ import android.widget.Toast;
 
 public class Utils {
 
+    private static int screenWidth = 0;
+    private static int screenHeight = 0;
 
     public static final void showToast(Context context, String message) {
 
@@ -155,5 +171,166 @@ public class Utils {
         return colorStates;
     }
 
+    public static int dpToPx(int dp) {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    public static int getScreenHeight(Context c) {
+        if (screenHeight == 0) {
+            WindowManager wm = (WindowManager) c.getSystemService(Context.WINDOW_SERVICE);
+            Display display = wm.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            screenHeight = size.y;
+        }
+
+        return screenHeight;
+    }
+
+    public static int getScreenWidth(Context c) {
+        if (screenWidth == 0) {
+            WindowManager wm = (WindowManager) c.getSystemService(Context.WINDOW_SERVICE);
+            Display display = wm.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            screenWidth = size.x;
+        }
+
+        return screenWidth;
+    }
+
+    public static boolean isAndroid5() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    }
+
+    public static Drawable[] getBackgroundList(Context context) {
+
+        Resources resources = context.getResources();
+
+        Drawable backgroundImageList[] = {
+                ContextCompat.getDrawable(context, R.drawable.background_1),
+                ContextCompat.getDrawable(context, R.drawable.background_2),
+                ContextCompat.getDrawable(context, R.drawable.background_3),
+                ContextCompat.getDrawable(context, R.drawable.background_4),
+                ContextCompat.getDrawable(context, R.drawable.background_5),
+                ContextCompat.getDrawable(context, R.drawable.background_6),
+                ContextCompat.getDrawable(context, R.drawable.background_7),
+                ContextCompat.getDrawable(context, R.drawable.background_8),
+                ContextCompat.getDrawable(context, R.drawable.background_9),
+                ContextCompat.getDrawable(context, R.drawable.background_10),
+                ContextCompat.getDrawable(context, R.drawable.background_11)
+
+        };
+        return backgroundImageList;
+    }
+
+    public static Typeface[] getTypeFaceList(Context context) {
+
+        try {
+            Typeface[] typeFaceList = new Typeface[]{
+
+                    // Typeface.createFromAsset(context.getAssets(), "fonttypes/JMH Typewriter-Bold.ttf"),
+                    // Typeface.createFromAsset(context.getAssets(), "fonttypes/Cabin-Medium.ttf"),
+                    // Typeface.createFromAsset(context.getAssets(), "fonttypes/Cabin-Regular.ttf"),
+                    //  Typeface.createFromAsset(context.getAssets(), "fonttypes/Comfortaa-Regular.ttf"),//not sure
+                    Typeface.createFromAsset(context.getAssets(), "fonttypes/Roboto-Regular.ttf"),
+                    Typeface.createFromAsset(context.getAssets(), "fonttypes/Sansation_Regular.ttf"), //ok
+                    Typeface.createFromAsset(context.getAssets(), "fonttypes/Young.ttf"),
+                    //Typeface.createFromAsset(context.getAssets(), "fonttypes/nimbusmono-bold.otf"),
+                    Typeface.createFromAsset(context.getAssets(), "fonttypes/Courier Prime.ttf"),
+                    Typeface.createFromAsset(context.getAssets(), "fonttypes/Aristotelica Display DemiBold Trial.ttf")// ok
+            };
+
+            return typeFaceList;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static HashMap<Integer, Bitmap> getIdPhotoHashmap(Context context) {
+
+        AssetManager assetManager = context.getAssets();
+        HashMap<Integer, Bitmap> photoHashmap = new HashMap<>();
+
+        ArrayList<Integer> idList = new ArrayList<>();
+        ArrayList<Bitmap> bitmapList = new ArrayList<>();
+
+        try {
+            String[] files = assetManager.list("profilepics");
+            ArrayList<String> listPath = new ArrayList<>();
+
+            for (int i = 0; i < files.length; i++) {
+
+                int endIndex = files[i].indexOf("_");
+                String substr = files[i].substring(0, endIndex);
+                int id = Integer.valueOf(substr);
+
+                idList.add(id);
+
+                //String pathAssets = "profilepics" + File.separator + files[i];
+                //listPath.add(pathAssets);
+            }
+
+            bitmapList = profilePicBitmapList(context);
+
+            for (int i = 0; i < idList.size(); i++) {
+                photoHashmap.put(idList.get(i), bitmapList.get(i));
+            }
+
+
+            return photoHashmap;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static ArrayList<Bitmap> profilePicBitmapList(Context context) {
+
+        AssetManager assetManager = context.getAssets();
+        ArrayList<Bitmap> bitmapArrayList = new ArrayList<>();
+        Bitmap bitmap = null;
+
+        try {
+            String[] imgPath = assetManager.list("profilepics");
+            for (int i = 0; i < imgPath.length; i++) {
+                InputStream is = assetManager.open("profilepics/" + imgPath[i]);
+                bitmap = BitmapFactory.decodeStream(is);
+                bitmapArrayList.add(bitmap);
+            }
+            return bitmapArrayList;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+    public static int getRawItem(int soundId) {
+
+        final int[] rawID =
+                {0,
+                        R.raw.asirlik_fon_muzigi,
+                        R.raw.fon_4,
+                        R.raw.duygusal_fon_1,
+                        R.raw.duygusal_fon_2,
+                        R.raw.duygusal_fon_3,
+                        R.raw.al_omrumu,
+                        R.raw.ay_dusunce,
+                        R.raw.bir_kucuk_meyve_icin_dali_incitme_gonul,
+                        R.raw.filed_fon_entrumental,
+                        R.raw.mona_roza,
+                        R.raw.vazgectim_ney
+                };
+
+        return rawID[soundId];
+
+    }
 
 }

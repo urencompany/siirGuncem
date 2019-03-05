@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/searchItem"
+            android:checkable="true"
+            android:icon="@drawable/menu_search"
+            android:title="@string/search" />
+
+        <item
+            android:id="@+id/allPoets"
+            android:checkable="true"
+            android:icon="@drawable/icon_poem"
+            android:title="@string/allPoets" />
+
+        <item
+            android:id="@+id/myFavorites"
+            android:checkable="true"
+            android:icon="@drawable/icon_star_full"
+            android:title="@string/myFavorites" />
+
+        <item
+            android:id="@+id/myRecordings"
+            android:checkable="true"
+            android:icon="@drawable/icon_microphone"
+            android:title="@string/myRecordings" />
+
+        <item
+            android:id="@+id/txtRateApp"
+            android:checkable="true"
+            android:icon="@drawable/icon_rateapp"
+            android:title="@string/rateApp" />
+
+
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="none">
+
+    </group>
+
+</menu>

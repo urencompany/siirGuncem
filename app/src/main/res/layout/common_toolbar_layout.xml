@@ -35,22 +35,21 @@
             android:layout_weight="1"
             android:gravity="center">
 
-            <!--<com.uren.kuranezan.Utils.ClickableImage.ClickableImageView
-                android:id="@+id/imgLeft"
+            <com.uren.siirler.Utils.ClickableImage.ClickableImageView
+                android:id="@+id/imgBack"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="8dp"
-                android:src="@drawable/icon_back_white"
-                android:visibility="gone" />-->
-
-            <ImageView
-                android:id="@+id/imgLeft"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="8dp"
-                android:src="@drawable/icon_back_white"
+                android:padding="3dp"
+                android:src="@drawable/icon_left_arrow"
                 android:visibility="gone" />
 
+            <com.uren.siirler.Utils.ClickableImage.ClickableImageView
+                android:id="@+id/imgLeft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="3dp"
+                android:src="@drawable/icon_menu"
+                android:visibility="gone" />
 
         </RelativeLayout>
 

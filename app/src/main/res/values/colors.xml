@@ -4,14 +4,19 @@
     <color name="colorPrimaryDark">@color/grey_trans</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="style_color_primary">#16A48C</color>
-    <color name="style_color_primary_dark">#139D8D</color>
+    <color name="style_color_primary">#2d5d82</color>
+    <color name="style_color_primary_dark">#21425d</color>
     <color name="style_color_accent">#01bcd5</color>
     <color name="fab_color_pressed">#007787</color>
     <color name="fab_color_shadow">#44000000</color>
     <color name="style_color_accent_nonedit">#01bcd5</color>
     <color name="fab_color_pressed_nonedit">#007787</color>
     <color name="fab_color_shadow_nonedit">#44000000</color>
+
+
+    <color name="likeButtonColor">@color/Crimson</color>
+    <color name="clearWhite">#ECEFF1</color>
+    <color name="tintColor">#9E9E9E</color>
 
 
     <color name="yellow">#F6A623</color>
@@ -42,6 +47,7 @@
     <color name="green">#70c050</color>
     <color name="gray">#808080</color>
     <color name="colorTextHint">#26616263</color>
+    <color name="iconTextColor">#981515</color>
 
 
     <color name="White">#FFFFFF</color>

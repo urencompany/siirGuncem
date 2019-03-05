@@ -14,17 +14,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.uren.siirler.FragmentControllers.FragNavController;
+import com.uren.siirler.FragmentControllers.FragNavTransactionOptions;
 import com.uren.siirler.FragmentControllers.FragmentHistory;
 import com.uren.siirler.MainFragments.BaseFragment;
-import com.uren.siirler.MainFragments.TabSearch.SearchFragment;
 import com.uren.siirler.MainFragments.TabPoets.PoetsFragment;
 import com.uren.siirler.MainFragments.TabHome.HomeFragment;
-import com.uren.siirler.Utils.Config;
+import com.uren.siirler.MainFragments.TabSearch.SearchFragment;
 import com.uren.siirler.Utils.Utils;
 
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.uren.siirler.Constants.StringConstants.ANIMATE_DOWN_TO_UP;
+import static com.uren.siirler.Constants.StringConstants.ANIMATE_LEFT_TO_RIGHT;
+import static com.uren.siirler.Constants.StringConstants.ANIMATE_RIGHT_TO_LEFT;
+import static com.uren.siirler.Constants.StringConstants.ANIMATE_UP_TO_DOWN;
 
 public class MainActivity extends FragmentActivity
         implements BaseFragment.FragmentNavigation,
@@ -42,19 +47,21 @@ public class MainActivity extends FragmentActivity
 
 
     private int[] mTabIconsSelected = {
-            R.drawable.tab_quran,
-            R.drawable.tab_quran,
+            //R.drawable.tab_quran,
             R.drawable.tab_quran
+            //R.drawable.tab_quran
     };
 
     private FragNavController mNavController;
     private FragmentHistory fragmentHistory;
     private TextView tabDescription;
 
-    private int initialTabIndex = 1;
+    private int initialTabIndex = 0;
     private int selectedTabColor, unSelectedTabColor;
     public static String PACKAGE_NAME;
 
+    public String ANIMATION_TAG;
+    public FragNavTransactionOptions transactionOptions;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,19 +77,19 @@ public class MainActivity extends FragmentActivity
 
         initToolbar();
         initTab();
+        showTabLayout(false);
 
         fragmentHistory = new FragmentHistory();
 
         mNavController = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), R.id.content_frame)
                 .transactionListener(this)
                 .rootFragmentListener(this, TABS.length)
-                .selectedTabIndex(FragNavController.TAB2)
+                .selectedTabIndex(FragNavController.TAB1)
                 .build();
 
         bottomTabLayout.getTabAt(initialTabIndex).select();
         switchTab(initialTabIndex);
         updateTabSelection(initialTabIndex);
-
 
         bottomTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -102,14 +109,7 @@ public class MainActivity extends FragmentActivity
             }
         });
 
-        setSharedPreferences();
 
-    }
-
-
-    private void setSharedPreferences() {
-        Config config = new Config();
-        config.load(this);
     }
 
     private void initToolbar() {
@@ -129,7 +129,7 @@ public class MainActivity extends FragmentActivity
                 bottomTabLayout.addTab(bottomTabLayout.newTab());
                 TabLayout.Tab tab = bottomTabLayout.getTabAt(i);
 
-                if(tab != null) {
+                if (tab != null) {
                     tab.setIcon(mTabIconsSelected[i]);
                     tab.setText(TABS[i]);
                 }
@@ -224,8 +224,10 @@ public class MainActivity extends FragmentActivity
     public void onBackPressed() {
 
         if (!mNavController.isRootFragment()) {
-            mNavController.popFragment();
+            setTransactionOption();
+            mNavController.popFragment(transactionOptions);
         } else {
+
             if (fragmentHistory.isEmpty()) {
                 super.onBackPressed();
             } else {
@@ -278,9 +280,51 @@ public class MainActivity extends FragmentActivity
 
     @Override
     public void pushFragment(Fragment fragment, String animationTag) {
+        ANIMATION_TAG = animationTag;
+        setTransactionOption();
 
+        if (mNavController != null) {
+            mNavController.pushFragment(fragment, transactionOptions);
+        }
     }
 
+    private void setTransactionOption() {
+        if (transactionOptions == null) {
+            transactionOptions = FragNavTransactionOptions.newBuilder().build();
+        }
+
+        if (ANIMATION_TAG != null) {
+            switch (ANIMATION_TAG) {
+                case ANIMATE_RIGHT_TO_LEFT:
+                    transactionOptions.enterAnimation = R.anim.slide_from_right;
+                    transactionOptions.exitAnimation = R.anim.slide_to_left;
+                    transactionOptions.popEnterAnimation = R.anim.slide_from_left;
+                    transactionOptions.popExitAnimation = R.anim.slide_to_right;
+                    break;
+                case ANIMATE_LEFT_TO_RIGHT:
+                    transactionOptions.enterAnimation = R.anim.slide_from_left;
+                    transactionOptions.exitAnimation = R.anim.slide_to_right;
+                    transactionOptions.popEnterAnimation = R.anim.slide_from_right;
+                    transactionOptions.popExitAnimation = R.anim.slide_to_left;
+                    break;
+                case ANIMATE_DOWN_TO_UP:
+                    transactionOptions.enterAnimation = R.anim.slide_from_down;
+                    transactionOptions.exitAnimation = R.anim.slide_to_up;
+                    transactionOptions.popEnterAnimation = R.anim.slide_from_up;
+                    transactionOptions.popExitAnimation = R.anim.slide_to_down;
+                    break;
+                case ANIMATE_UP_TO_DOWN:
+                    transactionOptions.enterAnimation = R.anim.slide_from_up;
+                    transactionOptions.exitAnimation = R.anim.slide_to_down;
+                    transactionOptions.popEnterAnimation = R.anim.slide_from_down;
+                    transactionOptions.popExitAnimation = R.anim.slide_to_up;
+                    break;
+                default:
+                    transactionOptions = null;
+            }
+        } else
+            transactionOptions = null;
+    }
 
     @Override
     public void onTabTransaction(Fragment fragment, int index) {
@@ -315,12 +359,12 @@ public class MainActivity extends FragmentActivity
     public Fragment getRootFragment(int index) {
         switch (index) {
 
+            //case FragNavController.TAB1:
+            //return new SearchFragment();
             case FragNavController.TAB1:
-                return new PoetsFragment();
-            case FragNavController.TAB2:
                 return new HomeFragment();
-            case FragNavController.TAB3:
-                return new SearchFragment();
+            //case FragNavController.TAB3:
+            //return new PoetsFragment();
 
         }
         throw new IllegalStateException("Need to send an index that we know");
@@ -342,6 +386,20 @@ public class MainActivity extends FragmentActivity
         tabSelectionControl(tabAt);
     }
 
+    public void showTabLayout(boolean isShow) {
+        if(isShow){
+            //tabMainLayout.setVisibility(View.VISIBLE);
+        }else{
+            tabMainLayout.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        //SingletonSiirList.getInstance().reset();
+        //SingletonSairList.getInstance().reset();
+        super.onDestroy();
+    }
 }
 
 

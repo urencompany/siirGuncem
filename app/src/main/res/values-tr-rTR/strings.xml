@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Siirler</string>
+    <string name="app_name">Şiir Güncem</string>
 
     <array name="tab_name">
-        <item>Şairler</item>
+        <!--item>Ara</item-->
         <item>Öne Çıkanlar</item>
-        <item>Ara</item>
+        <!--item>Şairler</item-->
     </array>
 
     <string name="loading">Yükleniyor</string>
     <string name="UPPERYES">EVET</string>
     <string name="UPPERNO">HAYIR</string>
+
+    <string name="poems">Şiirler</string>
+    <string name="poets">Şairler</string>
+    <string name="share">PAYLAŞ</string>
+    <string name="seeMore">Devamını oku</string>
+    <string name="allPoems">Şiirleri</string>
+    <string name="suggestions">Beğenebileceğini düşündüklerimiz...</string>
+    <string name="search">Şiirlerde Ara</string>
+    <string name="THERE_IS_NO_SEARCH_RESULT">Hiç bir sonuç bulunamadı.</string>
+
+    <string name="allPoets">Tüm Şairler</string>
+    <string name="myFavorites">Favorilerim</string>
+    <string name="noFavorite">Henüz favori şiir seçmemişsiniz...</string>
+    <string name="searchDetail">Şiir adı veya şiirlerde geçen herhangi bir kelime arayabilirsiniz</string>
+    <string name="myRecordings">Seslendirmelerim</string>
+
+    <string name="backgroundImage">Arkaplan</string>
+    <string name="textColor">Yazı rengi</string>
+    <string name="textSize">Yazı Boyutu</string>
+    <string name="textFont">Yazı tipi</string>
+    <string name="todaySpecialPoems">Günün şiirleri</string>
+    <string name="forYouPoems">Senin için derlediklerimiz</string>
+    <string name="rateApp">Bizi Değerlendir</string>
+    <string name="txtRecord">SESLENDİR</string>
+    <string name="aar_paused">Duraklatıldı</string>
+    <string name="aar_recording">Kaydediliyor</string>
+    <string name="aar_playing">Oynatılıyor</string>
+    <string name="cancel">İPTAL</string>
+    <string name="apply">UYGULA</string>
+
+    <string name="delete">Sil</string>
+    <string name="deleteSure">Kayıt silinsin mi?</string>
+    <string name="share2">Paylaş</string>
+    <string name="renameFileTitle">Kaydı Adlandır?</string>
+    <string name="fileAlreadyExist">Dosya Mevcut</string>
+    <string name="overrideFile">Bu dosya adı zaten mevcut. Üzerine yazılsın mı?</string>
+    <string name="recordSuccessful">Kayıt başarıyla tamamlandı.</string>
+
+
+    <string-array name="sounds">
+        <item>Yok</item>
+        <item>Akıcı Fon 1</item>
+        <item>Akıcı Fon 2</item>
+        <item>Duygusal Fon 1</item>
+        <item>Duygusal Fon 2</item>
+        <item>Duygusal Fon 3</item>
+        <item>Al Ömrümü Koy Ömrünün Üstüne</item>
+        <item>Ay düşünce</item>
+        <item>Bir küçük meyve için dalı incitme</item>
+        <item>Enstrüman Fon</item>
+        <item>Mona Roza</item>
+        <item>Vazgeçtim Ney</item>
+    </string-array>
 
 </resources>
