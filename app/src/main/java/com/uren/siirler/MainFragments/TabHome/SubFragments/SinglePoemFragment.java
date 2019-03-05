@@ -146,7 +146,7 @@ public class SinglePoemFragment extends BaseFragment
     private void init() {
         MobileAds.initialize(getContext(), getActivity().getResources().getString(R.string.ADMOB_APP_ID));
         AdMobUtils.loadBannerAd(adView);
-        AdMobUtils.loadInterstitialAd(getContext());
+        //AdMobUtils.loadInterstitialAd(getContext());
         imgBack.setOnClickListener(this);
         txtAllPoems.setOnClickListener(this);
         imgFavorite.setOnClickListener(this);

@@ -2,12 +2,12 @@
     <string name="app_name">Poem Diary</string>
 
     <string name="ADMOB_APP_ID">ca-app-pub-7227467199436307~6755772355</string>
-    <!--<string name="ADMOB_BANNER_AD_UNIT_ID">ca-app-pub-7227467199436307/9787639112</string>
-    <string name="ADMOB_INTERSITITIAL_AD_UNIT_ID">ca-app-pub-7227467199436307/8255065592</string>-->
+    <string name="ADMOB_BANNER_AD_UNIT_ID">ca-app-pub-7227467199436307/9787639112</string>
+    <string name="ADMOB_INTERSITITIAL_AD_UNIT_ID">ca-app-pub-7227467199436307/8255065592</string>
 
     <!--Test-->
-    <string name="ADMOB_BANNER_AD_UNIT_ID">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="ADMOB_INTERSITITIAL_AD_UNIT_ID">ca-app-pub-3940256099942544/1033173712</string>
+    <!--<string name="ADMOB_BANNER_AD_UNIT_ID">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="ADMOB_INTERSITITIAL_AD_UNIT_ID">ca-app-pub-3940256099942544/1033173712</string>-->
 
     <array name="tab_name">
         <!--item>Search</item-->
