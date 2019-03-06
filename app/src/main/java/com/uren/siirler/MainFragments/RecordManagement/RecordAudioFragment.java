@@ -327,6 +327,23 @@ public class RecordAudioFragment extends BaseFragment
                 .apply(RequestOptions.centerCropTransform())
                 .into(imgBackground);
 
+        //imgSave
+        Glide.with(getContext())
+                .load(R.drawable.icon_download2)
+                .apply(RequestOptions.centerCropTransform())
+                .into(imgSave);
+
+        //imgShare
+        Glide.with(getContext())
+                .load(R.drawable.icon_share2)
+                .apply(RequestOptions.centerCropTransform())
+                .into(imgShare);
+
+        //icon_music2
+        Glide.with(getContext())
+                .load(R.drawable.icon_music2)
+                .apply(RequestOptions.centerCropTransform())
+                .into(imgMusic);
 
         restartView.setVisibility(View.INVISIBLE);
         playView.setVisibility(View.INVISIBLE);

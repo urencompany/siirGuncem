@@ -34,7 +34,7 @@ public class ShapeUtil {
             GradientDrawable gd = new GradientDrawable(
                     GradientDrawable.Orientation.TOP_BOTTOM,
                     new int[]{startColor, endColor});
-            gd.setCornerRadius(0f);
+            gd.setCornerRadius(20f);
             return gd;
         } catch (Exception e) {
             e.printStackTrace();

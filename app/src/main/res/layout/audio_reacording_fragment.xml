@@ -244,21 +244,18 @@
                     android:id="@+id/imgSave"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/icon_download2" />
+                    android:layout_margin="20dp" />
 
                 <com.uren.siirler.Utils.ClickableImage.ClickableImageView
                     android:id="@+id/imgShare"
                     android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/icon_share2" />
+                    android:layout_height="25dp" />
 
                 <com.uren.siirler.Utils.ClickableImage.ClickableImageView
                     android:id="@+id/imgMusic"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/icon_music2" />
+                    android:layout_margin="20dp" />
 
 
             </LinearLayout>
