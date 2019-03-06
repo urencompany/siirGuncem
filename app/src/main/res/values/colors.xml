@@ -18,6 +18,8 @@
     <color name="clearWhite">#ECEFF1</color>
     <color name="tintColor">#9E9E9E</color>
 
+    <color name="startColor">#42a5f5</color>
+    <color name="endColor">#90caf9</color>
 
     <color name="yellow">#F6A623</color>
     <color name="violet">#673AB7</color>

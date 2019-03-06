@@ -33,6 +33,7 @@ import com.uren.siirler.MainFragments.ShareManagement.ShareFragment;
 import com.uren.siirler.MainFragments.TabHome.SubFragments.PoetProfileFragment;
 import com.uren.siirler.R;
 import com.uren.siirler.Utils.AdMobUtil.AdMobUtils;
+import com.uren.siirler.Utils.ShapeUtil;
 import com.uren.siirler.Utils.UserDataUtil;
 import com.uren.siirler.Utils.Utils;
 import com.uren.siirler._model.Sair;
@@ -439,7 +440,11 @@ public class FeedAdapter extends RecyclerView.Adapter {
                 Random rand = new Random();
                 int index = rand.nextInt(randomBackground.length);
                 backgroundIndex = index;
-                llPoet.setBackground(mContext.getResources().getDrawable(randomBackground[backgroundIndex]));
+                int startColor = mContext.getResources().getColor(R.color.startColor);
+                int endColor = mContext.getResources().getColor(R.color.endColor);
+                llPoet.setBackground(ShapeUtil.getGradientBackground(startColor,endColor));
+
+                //llPoet.setBackground(mContext.getResources().getDrawable(randomBackground[backgroundIndex]));
 
 
                 Typeface[] typeFaceList = Utils.getTypeFaceList(mContext);
