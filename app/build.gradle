@@ -10,14 +10,21 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
     }
     buildTypes {
         release {
-            shrinkResources true
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
@@ -67,7 +74,6 @@ dependencies {
 
     implementation 'com.google.android.exoplayer:exoplayer:r2.2.0'
 
-    implementation 'com.android.support:multidex:1.0.3'
 
 }
 
