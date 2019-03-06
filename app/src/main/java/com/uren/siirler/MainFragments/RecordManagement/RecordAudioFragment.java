@@ -60,6 +60,7 @@ import com.uren.siirler._model.Siir;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -251,7 +252,7 @@ public class RecordAudioFragment extends BaseFragment
                     == PackageManager.PERMISSION_GRANTED) {
                 return true;
             } else {
-                ActivityCompat.requestPermissions(getActivity(), new String[]{askedPermission}, 1);
+                requestPermissions(new String[]{askedPermission}, 1);
                 return false;
             }
         } else { //permission is automatically granted on sdk<23 upon installation
@@ -535,7 +536,13 @@ public class RecordAudioFragment extends BaseFragment
             stopRecording();
             player = new MediaPlayer();
             player.setDataSource(outputMediaFile.getPath());
-            player.prepare();
+            try {
+                player.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            }
             player.start();
 
             //visualizerView.linkTo(DbmHandler.Factory.newVisualizerHandler(this, player));

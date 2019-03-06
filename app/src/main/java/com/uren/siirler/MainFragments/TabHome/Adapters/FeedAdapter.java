@@ -435,11 +435,11 @@ public class FeedAdapter extends RecyclerView.Adapter {
                     txtSeeMore.setMovementMethod(LinkMovementMethod.getInstance());
                 }
 
-                Drawable[] randoomBackground = Utils.getBackgroundList(mContext);
+                int[] randomBackground = Utils.getBackgroundList(mContext);
                 Random rand = new Random();
-                int index = rand.nextInt(randoomBackground.length);
+                int index = rand.nextInt(randomBackground.length);
                 backgroundIndex = index;
-                llPoet.setBackground(randoomBackground[index]);
+                llPoet.setBackground(mContext.getResources().getDrawable(randomBackground[backgroundIndex]));
 
 
                 Typeface[] typeFaceList = Utils.getTypeFaceList(mContext);

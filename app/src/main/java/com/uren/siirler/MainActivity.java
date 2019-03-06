@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.uren.siirler.FragmentControllers.FragNavController;
 import com.uren.siirler.FragmentControllers.FragNavTransactionOptions;
 import com.uren.siirler.FragmentControllers.FragmentHistory;
@@ -25,6 +26,7 @@ import com.uren.siirler.Utils.Utils;
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.fabric.sdk.android.Fabric;
 
 import static com.uren.siirler.Constants.StringConstants.ANIMATE_DOWN_TO_UP;
 import static com.uren.siirler.Constants.StringConstants.ANIMATE_LEFT_TO_RIGHT;
@@ -70,6 +72,7 @@ public class MainActivity extends FragmentActivity
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        Fabric.with(this, new Crashlytics());
 
         PACKAGE_NAME = getApplicationContext().getPackageName();
         unSelectedTabColor = this.getResources().getColor(R.color.DarkGray);

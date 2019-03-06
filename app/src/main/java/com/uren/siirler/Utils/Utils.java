@@ -203,11 +203,15 @@ public class Utils {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
-    public static Drawable[] getBackgroundList(Context context) {
-
+    public static int[] getBackgroundList(Context context) {
+/*
         Resources resources = context.getResources();
+        //Bitmap bitmap = BitmapFactory.decodeResource(resources, R.drawable.background_1);
 
         Drawable backgroundImageList[] = {
+
+
+
                 ContextCompat.getDrawable(context, R.drawable.background_1),
                 ContextCompat.getDrawable(context, R.drawable.background_2),
                 ContextCompat.getDrawable(context, R.drawable.background_3),
@@ -222,6 +226,24 @@ public class Utils {
 
         };
         return backgroundImageList;
+        */
+
+        int[] BACKGROUND_THEMES = new int[]{
+                R.drawable.background_1,
+                R.drawable.background_2,
+                R.drawable.background_3,
+                R.drawable.background_4,
+                R.drawable.background_5,
+                R.drawable.background_6,
+                R.drawable.background_7,
+                R.drawable.background_8,
+                R.drawable.background_9,
+                R.drawable.background_10,
+                R.drawable.background_11
+        };
+
+        return BACKGROUND_THEMES;
+
     }
 
     public static Typeface[] getTypeFaceList(Context context) {

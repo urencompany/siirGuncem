@@ -1,13 +1,17 @@
 package com.uren.siirler.MainFragments.RecordManagement;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -137,12 +141,47 @@ public class RecordingsFragment extends BaseFragment
             init();
 
             initRecyclerView();
-            startAsyncTask();
 
+            if (checkPermission()) {
+                startAsyncTask();
+            }
 
         }
 
         return mView;
+    }
+
+    private boolean checkPermission() {
+        boolean perm3 = isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (perm3)
+            return true;
+        else
+            return false;
+
+    }
+
+    public boolean isPermissionGranted(String askedPermission) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(getContext(), askedPermission)
+                    == PackageManager.PERMISSION_GRANTED) {
+                return true;
+            } else {
+                requestPermissions(new String[]{askedPermission}, 1);
+                return false;
+            }
+        } else { //permission is automatically granted on sdk<23 upon installation
+            return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            //resume tasks needing this permission
+            startAsyncTask();
+        }
     }
 
     private void startAsyncTask() {
@@ -250,7 +289,7 @@ public class RecordingsFragment extends BaseFragment
                 if (mediaPlayer != null) {
                     mediaPlayer.stop();
                     mediaPlayer.release();
-                    if(handler != null && runnable!= null){
+                    if (handler != null && runnable != null) {
                         handler.removeCallbacks(runnable);
                     }
                 }
@@ -268,61 +307,55 @@ public class RecordingsFragment extends BaseFragment
         txtCurrentTime = (TextView) dialog.findViewById(R.id.time_current);
         txtEndTime = (TextView) dialog.findViewById(R.id.player_end_time);
 
-        //setSeekBar();
-        txtCurrentTime.setText(stringForTime((int) mediaPlayer.getCurrentPosition()));
-        txtEndTime.setText(stringForTime((int) mediaPlayer.getDuration()));
+        if (mediaPlayer != null) {
+            //setSeekBar();
+            txtCurrentTime.setText(stringForTime((int) mediaPlayer.getCurrentPosition()));
+            txtEndTime.setText(stringForTime((int) mediaPlayer.getDuration()));
 
-        btnPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.pause();
-                    btnPlay.setImageResource(android.R.drawable.ic_media_play);
-                } else {
-                    mediaPlayer.start();
-                    btnPlay.setImageResource(android.R.drawable.ic_media_pause);
-                    changeSeekBar();
+            btnPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mediaPlayer.isPlaying()) {
+                        mediaPlayer.pause();
+                        btnPlay.setImageResource(android.R.drawable.ic_media_play);
+                    } else {
+                        mediaPlayer.start();
+                        btnPlay.setImageResource(android.R.drawable.ic_media_pause);
+                        changeSeekBar();
+                    }
                 }
-            }
-        });
+            });
 
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                seekBar.setMax(mediaPlayer.getDuration());
-                //mediaPlayer.start();
-                //changeSeekBar();
-            }
-        });
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                if (b) {
-                    mediaPlayer.seekTo(i);
-                    txtCurrentTime.setText(stringForTime((int) mediaPlayer.getCurrentPosition()));
-                    txtEndTime.setText(stringForTime((int) mediaPlayer.getDuration()));
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    seekBar.setMax(mediaPlayer.getDuration());
+                    //mediaPlayer.start();
+                    //changeSeekBar();
                 }
-            }
+            });
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    if (b) {
+                        mediaPlayer.seekTo(i);
+                        txtCurrentTime.setText(stringForTime((int) mediaPlayer.getCurrentPosition()));
+                        txtEndTime.setText(stringForTime((int) mediaPlayer.getDuration()));
+                    }
+                }
 
-            }
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                }
 
-            }
-        });
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
 
-    }
-
-    private void setSeekBar() {
-
-
-        //seekBar.setMax(0);
-        //seekBar.setMax((int) mediaPlayer.getDuration()/1000);
+                }
+            });
+        }
 
     }
 

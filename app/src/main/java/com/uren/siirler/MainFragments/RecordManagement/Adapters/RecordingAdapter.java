@@ -201,14 +201,24 @@ public class RecordingAdapter extends RecyclerView.Adapter {
 
             if (file.exists()) {
 
-                MediaPlayer mediaPlayer = MediaPlayer.create(mContext, Uri.parse(file.getPath()));
-                txtLength.setText(formatTime((int) mediaPlayer.getDuration()));
+                MediaPlayer mediaPlayer = null;
+                try {
+                    mediaPlayer = MediaPlayer.create(mContext, Uri.parse(file.getPath()));
+                    if(mediaPlayer != null){
+                        txtLength.setText(formatTime((int) mediaPlayer.getDuration()));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 Date lastModDate = new Date(file.lastModified());
                 txtDate.setText(formatDate(lastModDate));
 
                 // close object
-                mediaPlayer.release();
+                if(mediaPlayer != null){
+                    mediaPlayer.release();
+                }
+
             }
 
         }
