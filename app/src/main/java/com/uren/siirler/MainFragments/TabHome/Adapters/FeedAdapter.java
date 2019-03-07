@@ -67,6 +67,8 @@ public class FeedAdapter extends RecyclerView.Adapter {
     private ArrayList<Siir> verticalSiirList;
     private ArrayList<Sair> sairList;
     private HashMap<Integer, Sair> sairHashmap;
+    private ArrayList<int[]> backgroundColorList;
+    private Typeface[] typeFaceList;
 
     public FeedAdapter(Activity activity, Context context,
                        BaseFragment.FragmentNavigation fragmentNavigation) {
@@ -78,6 +80,8 @@ public class FeedAdapter extends RecyclerView.Adapter {
         this.verticalSiirList = new ArrayList<Siir>();
         this.sairList = new ArrayList<Sair>();
         this.sairHashmap = new HashMap<>();
+        this.backgroundColorList = Utils.getBackgroundColorList(mContext);
+        this.typeFaceList = Utils.getTypeFaceList(mContext);
     }
 
     @Override
@@ -435,7 +439,7 @@ public class FeedAdapter extends RecyclerView.Adapter {
                     txtSeeMore.setVisibility(View.VISIBLE);
                     txtSeeMore.setMovementMethod(LinkMovementMethod.getInstance());
                 }
-
+/*
                 int[] randomBackground = Utils.getBackgroundList(mContext);
                 Random rand = new Random();
                 int index = rand.nextInt(randomBackground.length);
@@ -445,9 +449,16 @@ public class FeedAdapter extends RecyclerView.Adapter {
                 llPoet.setBackground(ShapeUtil.getGradientBackground(startColor,endColor));
 
                 //llPoet.setBackground(mContext.getResources().getDrawable(randomBackground[backgroundIndex]));
+*/
+
+                Random rand = new Random();
+                int index = rand.nextInt(backgroundColorList.size());
+                backgroundIndex = index;
+                int startColor = mContext.getResources().getColor(backgroundColorList.get(backgroundIndex)[0]);
+                int endColor = mContext.getResources().getColor(backgroundColorList.get(backgroundIndex)[1]);
+                llPoet.setBackground(ShapeUtil.getGradientBackground(startColor, endColor));
 
 
-                Typeface[] typeFaceList = Utils.getTypeFaceList(mContext);
                 index = rand.nextInt(typeFaceList.length);
                 typeFaceIndex = index;
                 txtBaslik.setTypeface(typeFaceList[index]);
@@ -582,15 +593,15 @@ public class FeedAdapter extends RecyclerView.Adapter {
 
                 for (int i = 0; i < arrayListSiir.size() + bannerAds.size(); i++) {
 
-                    int position = i+1;
+                    int position = i + 1;
 
                     if (position % ITEM_PER_AD == 0) {
-                        if(bannerCounter <bannerAds.size()){
+                        if (bannerCounter < bannerAds.size()) {
                             objectList.add(bannerAds.get(bannerCounter));
                             bannerCounter++;
                         }
-                    }else{
-                        if(siirCounter <arrayListSiir.size()){
+                    } else {
+                        if (siirCounter < arrayListSiir.size()) {
                             objectList.add(arrayListSiir.get(siirCounter));
                             siirCounter++;
                         }

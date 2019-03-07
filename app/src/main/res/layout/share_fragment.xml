@@ -78,8 +78,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_margin="20dp"
-            android:alpha="0.5"
-            android:src="@drawable/black_cancel_icon" />
+            android:alpha="0.5" />
 
 
         <FrameLayout
@@ -112,8 +111,7 @@
             android:padding="5dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_margin="20dp"
-            android:src="@drawable/icon_more_vertical" />
+            android:layout_margin="20dp" />
 
         <LinearLayout
             android:id="@+id/llSelection"
@@ -135,14 +133,14 @@
                 android:id="@+id/imgSelectedOption"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:padding="15dp" />
 
             <com.uren.siirler.Utils.ClickableImage.ClickableImageView
                 android:id="@+id/imgForwardArrow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:padding="15dp" />
 
         </LinearLayout>
@@ -153,9 +151,7 @@
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="20dp"
-            android:src="@drawable/icon_whatsapp" />
-
+            android:layout_margin="20dp" />
 
         <ProgressBar
             android:id="@+id/progressBar"

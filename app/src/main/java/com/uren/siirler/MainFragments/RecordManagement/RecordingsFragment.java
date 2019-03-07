@@ -100,10 +100,7 @@ public class RecordingsFragment extends BaseFragment
     private MediaPlayer mediaPlayer;
     private Runnable runnable;
     private Handler handler;
-
     private TextView txtCurrentTime, txtEndTime;
-    private boolean isPlaying = false;
-    private SimpleExoPlayer exoPlayer;
 
 
     public RecordingsFragment() {

@@ -2,9 +2,9 @@ package com.uren.siirler.Constants;
 
 public class StringConstants {
 
-    public static final String SIIRLER_DATABASE = "siirler4.db";
-    public static final String SAIRLER_DATABASE = "sairler4.db";
-    public static final String CONFIG_DATABASE = "config4.db";
+    public static final String SIIRLER_DATABASE = "siirler6.db";
+    public static final String SAIRLER_DATABASE = "sairler6.db";
+    public static final String CONFIG_DATABASE = "config6.db";
     public static final String APP_NAME = "Siirler";
 
 

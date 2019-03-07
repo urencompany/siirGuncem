@@ -203,48 +203,6 @@ public class Utils {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
-    public static int[] getBackgroundList(Context context) {
-/*
-        Resources resources = context.getResources();
-        //Bitmap bitmap = BitmapFactory.decodeResource(resources, R.drawable.background_1);
-
-        Drawable backgroundImageList[] = {
-
-
-
-                ContextCompat.getDrawable(context, R.drawable.background_1),
-                ContextCompat.getDrawable(context, R.drawable.background_2),
-                ContextCompat.getDrawable(context, R.drawable.background_3),
-                ContextCompat.getDrawable(context, R.drawable.background_4),
-                ContextCompat.getDrawable(context, R.drawable.background_5),
-                ContextCompat.getDrawable(context, R.drawable.background_6),
-                ContextCompat.getDrawable(context, R.drawable.background_7),
-                ContextCompat.getDrawable(context, R.drawable.background_8),
-                ContextCompat.getDrawable(context, R.drawable.background_9),
-                ContextCompat.getDrawable(context, R.drawable.background_10),
-                ContextCompat.getDrawable(context, R.drawable.background_11)
-
-        };
-        return backgroundImageList;
-        */
-
-        int[] BACKGROUND_THEMES = new int[]{
-                R.drawable.background_1,
-                R.drawable.background_2,
-                R.drawable.background_3,
-                R.drawable.background_4,
-                R.drawable.background_5,
-                R.drawable.background_6,
-                R.drawable.background_7,
-                R.drawable.background_8,
-                R.drawable.background_9,
-                R.drawable.background_10,
-                R.drawable.background_11
-        };
-
-        return BACKGROUND_THEMES;
-
-    }
 
     public static Typeface[] getTypeFaceList(Context context) {
 
@@ -352,6 +310,71 @@ public class Utils {
                 };
 
         return rawID[soundId];
+
+    }
+
+    public static ArrayList<int[]> getBackgroundColorList(Context context) {
+
+        ArrayList<int[]> colorList = new ArrayList<>();
+
+        int[] background1 = new int[]{
+            R.color.startColor1,
+                R.color.endColor1
+        };
+        int[] background2 = new int[]{
+                R.color.startColor2,
+                R.color.endColor2
+        };
+        int[] background3 = new int[]{
+                R.color.startColor3,
+                R.color.endColor3
+        };
+        int[] background4 = new int[]{
+                R.color.startColor4,
+                R.color.endColor4
+        };
+        int[] background5 = new int[]{
+                R.color.startColor5,
+                R.color.endColor5
+        };
+        int[] background6 = new int[]{
+                R.color.startColor6,
+                R.color.endColor6
+        };
+        int[] background7 = new int[]{
+                R.color.startColor7,
+                R.color.endColor7
+        };
+        int[] background8 = new int[]{
+                R.color.startColor8,
+                R.color.endColor8
+        };
+        int[] background9 = new int[]{
+                R.color.startColor9,
+                R.color.endColor9
+        };
+        int[] background10 = new int[]{
+                R.color.startColor10,
+                R.color.endColor10
+        };
+        int[] background11 = new int[]{
+                R.color.startColor11,
+                R.color.endColor11
+        };
+
+        colorList.add(background1);
+        colorList.add(background2);
+        colorList.add(background3);
+        colorList.add(background4);
+        colorList.add(background5);
+        colorList.add(background6);
+        colorList.add(background7);
+        colorList.add(background8);
+        colorList.add(background9);
+        colorList.add(background10);
+        colorList.add(background11);
+
+        return colorList;
 
     }
 

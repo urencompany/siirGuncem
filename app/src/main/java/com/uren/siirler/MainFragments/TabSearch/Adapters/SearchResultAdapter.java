@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.uren.siirler.MainFragments.BaseFragment;
 import com.uren.siirler.MainFragments.TabHome.Interfaces.PoemFeaturesCallback;
 import com.uren.siirler.MainFragments.TabHome.JavaClasses.PoemHelper;
+import com.uren.siirler.MainFragments.TabHome.SubFragments.PoetProfileFragment;
 import com.uren.siirler.R;
 import com.uren.siirler.Utils.UserDataUtil;
 import com.uren.siirler.Utils.Utils;
@@ -30,19 +31,22 @@ import java.util.HashMap;
 import java.util.List;
 
 import static com.uren.siirler.Constants.NumericConstants.COMING_FROM_NORMAL_POEM;
+import static com.uren.siirler.Constants.StringConstants.ANIMATE_RIGHT_TO_LEFT;
 import static com.uren.siirler.Constants.StringConstants.USERNAME_FONT_TYPE;
 
 
 public class SearchResultAdapter extends RecyclerView.Adapter {
 
     public static final int VIEW_POEM = 0;
-    public static final int VIEW_PROG = 1;
+    public static final int VIEW_POET = 1;
+    public static final int VIEW_PROG = 2;
 
     private Activity mActivity;
     private Context mContext;
     private BaseFragment.FragmentNavigation fragmentNavigation;
     private ArrayList<Object> objectList;
     private ArrayList<Sair> sairArrayList;
+    private ArrayList<Sair> filteredSairArrayList;
     private ArrayList<Siir> siirArrayList;
     private ArrayList<Siir> siirWitDetalList;
     private ArrayList<String> siirDetalList;
@@ -59,13 +63,15 @@ public class SearchResultAdapter extends RecyclerView.Adapter {
         this.siirWitDetalList = new ArrayList<Siir>();
         this.siirDetalList = new ArrayList<String>();
         this.sairArrayList = new ArrayList<Sair>();
+        this.filteredSairArrayList = new ArrayList<>();
         this.sairHashmap = new HashMap<>();
     }
 
     @Override
     public int getItemViewType(int position) {
-
-        if (objectList.get(position) instanceof Siir) {
+        if (objectList.get(position) instanceof Sair) {
+            return VIEW_POET;
+        } else if (objectList.get(position) instanceof Siir) {
             return VIEW_POEM;
         } else if (objectList.get(position) instanceof ProgressBar) {
             return VIEW_PROG;
@@ -84,7 +90,12 @@ public class SearchResultAdapter extends RecyclerView.Adapter {
 
         RecyclerView.ViewHolder viewHolder = null;
 
-        if (viewType == VIEW_POEM) {
+        if (viewType == VIEW_POET) {
+            View itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.row_poet, parent, false);
+
+            viewHolder = new PoetViewHolder(itemView);
+        } else if (viewType == VIEW_POEM) {
             View itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.row_poem_with_detail, parent, false);
 
@@ -119,7 +130,10 @@ public class SearchResultAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         try {
-            if (holder instanceof PoemViewHolder) {
+            if (holder instanceof PoetViewHolder) {
+                Sair sair = (Sair) objectList.get(position);
+                ((PoetViewHolder) holder).setData(sair, position);
+            } else if (holder instanceof PoemViewHolder) {
                 Siir siir = (Siir) objectList.get(position);
                 ((PoemViewHolder) holder).setData(siir, position);
             } else {
@@ -128,6 +142,67 @@ public class SearchResultAdapter extends RecyclerView.Adapter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public class PoetViewHolder extends RecyclerView.ViewHolder {
+
+        View mView;
+        TextView txtSair;
+        RelativeLayout llRvRow;
+        ImageView imgProfilePic;
+        TextView txtProfilePic;
+
+        private int position;
+        private Sair sair;
+
+        public PoetViewHolder(View view) {
+            super(view);
+
+            try {
+                mView = view;
+                txtSair = (TextView) view.findViewById(R.id.txtSair);
+                llRvRow = (RelativeLayout) view.findViewById(R.id.llRvRow);
+                imgProfilePic = (ImageView) view.findViewById(R.id.imgProfilePic);
+                txtProfilePic = (TextView) view.findViewById(R.id.txtProfilePic);
+
+
+                setListeners();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void setListeners() {
+
+            llRvRow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fragmentNavigation.pushFragment(PoetProfileFragment.newInstance(sair.getId()), ANIMATE_RIGHT_TO_LEFT);
+                }
+            });
+
+        }
+
+
+        public void setData(Sair sair, int position) {
+
+            this.position = position;
+            this.sair = sair;
+
+            //profile pic
+            int colorCode = mContext.getResources().getColor(R.color.Black);
+            UserDataUtil.setProfilePictureRectangle(mContext, sair, txtProfilePic, imgProfilePic, colorCode);
+            imgProfilePic.setPadding(1, 1, 1, 1);//Name
+            //sair ad
+            if (sair.getAd() != null && !sair.getAd().isEmpty()) {
+                this.txtSair.setText(sair.getAd());
+                txtSair.setTypeface(Typeface.createFromAsset(mContext.getAssets(), USERNAME_FONT_TYPE));
+            }
+
+        }
+
 
     }
 
@@ -280,14 +355,20 @@ public class SearchResultAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void addMatchingSiirList(ArrayList<Siir> arrayListSiir) {
+    public void addMatchingSiirList(ArrayList<Sair> filteredSairArrayList, ArrayList<Siir> arrayListSiir) {
         try {
-            if (arrayListSiir != null && arrayListSiir.size() > 0) {
-                siirArrayList = arrayListSiir;
-                int initialSize = objectList.size();
-                objectList.addAll(arrayListSiir);
-                notifyItemRangeInserted(initialSize, arrayListSiir.size());
+            int initialSize = objectList.size();
+            if (filteredSairArrayList != null && filteredSairArrayList.size() > 0) {
+                this.filteredSairArrayList = filteredSairArrayList;
+                objectList.addAll(filteredSairArrayList);
             }
+
+            if (arrayListSiir != null && arrayListSiir.size() > 0) {
+                this.siirArrayList = arrayListSiir;
+                objectList.addAll(arrayListSiir);
+            }
+
+            notifyItemRangeInserted(initialSize, objectList.size() - initialSize);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -368,6 +449,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter {
             int initialSize = objectList.size();
             objectList.clear();
             sairArrayList.clear();
+            filteredSairArrayList.clear();
             siirArrayList.clear();
             siirWitDetalList.clear();
             siirDetalList.clear();

@@ -18,13 +18,13 @@
     <string name="seeMore">Devamını oku</string>
     <string name="allPoems">Şiirleri</string>
     <string name="suggestions">Beğenebileceğini düşündüklerimiz...</string>
-    <string name="search">Şiirlerde Ara</string>
+    <string name="search">Ara</string>
     <string name="THERE_IS_NO_SEARCH_RESULT">Hiç bir sonuç bulunamadı.</string>
 
     <string name="allPoets">Tüm Şairler</string>
     <string name="myFavorites">Favorilerim</string>
     <string name="noFavorite">Henüz favori şiir seçmemişsiniz...</string>
-    <string name="searchDetail">Şiir adı veya şiirlerde geçen herhangi bir kelime arayabilirsiniz</string>
+    <string name="searchDetail">Şair, şiir veya herhangi bir kelime arayabilirsiniz</string>
     <string name="myRecordings">Seslendirmelerim</string>
 
     <string name="backgroundImage">Arkaplan</string>

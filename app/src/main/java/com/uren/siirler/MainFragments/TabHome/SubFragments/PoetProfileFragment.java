@@ -113,6 +113,13 @@ public class PoetProfileFragment extends BaseFragment
         AdMobUtils.loadBannerAd(adView);
         //AdMobUtils.loadInterstitialAd(getContext());
         imgBack.setOnClickListener(this);
+
+        //imgRecordIcon
+        Glide.with(getContext())
+                .load(R.drawable.icon_left_arrow)
+                .apply(RequestOptions.fitCenterTransform())
+                .into(imgBack);
+
     }
 
     private void setVariables() {

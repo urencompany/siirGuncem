@@ -187,13 +187,21 @@ public class FavoriteAdapter extends RecyclerView.Adapter {
             }
 
             if (siir.getMetin() != null) {
-                byte[] result = new byte[100];
-                for (int i = 0; i < 100; i++) {
-                    result[i] = siir.getMetin()[i];
+
+                int length = siir.getMetin().length;
+                if(length<100){
+                    String response = new String(siir.getMetin(), "UTF-8");
+                    txtSiir.setText(response);
+                }else{
+                    byte[] result = new byte[100];
+                    for (int i = 0; i < 100; i++) {
+                        result[i] = siir.getMetin()[i];
+                    }
+
+                    String response = new String(result, "UTF-8");
+                    txtSiir.setText(response + "...");
                 }
 
-                String response = new String(result, "UTF-8");
-                txtSiir.setText(response + "...");
             }
 
             txtBaslik.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "fonttypes/Sansation_Regular.ttf"));

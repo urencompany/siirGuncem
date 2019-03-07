@@ -62,8 +62,7 @@
                         android:id="@+id/imgBack"
                         android:layout_width="?attr/actionBarSize"
                         android:layout_height="?attr/actionBarSize"
-                        android:padding="13dp"
-                        android:src="@drawable/icon_left_arrow" />
+                        android:padding="13dp" />
 
 
                 </android.support.v7.widget.Toolbar>
@@ -148,9 +147,7 @@
                                 <com.uren.siirler.Utils.ClickableImage.ClickableImageView
                                     android:id="@+id/imgFavorite"
                                     android:layout_width="25dp"
-                                    android:layout_height="25dp"
-
-                                    android:src="@drawable/icon_star_emtpy" />
+                                    android:layout_height="25dp" />
 
                             </RelativeLayout>
 
@@ -181,9 +178,7 @@
                                 <ImageView
                                     android:id="@+id/imgRecord"
                                     android:layout_width="25dp"
-                                    android:layout_height="25dp"
-
-                                    android:src="@drawable/icon_microphone" />
+                                    android:layout_height="25dp" />
 
                             </RelativeLayout>
 

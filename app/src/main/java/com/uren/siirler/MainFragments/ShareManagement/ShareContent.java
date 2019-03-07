@@ -9,20 +9,6 @@ import com.uren.siirler.R;
 
 public class ShareContent {
 
-    int[] BACKGROUND_THEMES = new int[]{
-            R.drawable.background_1,
-            R.drawable.background_2,
-            R.drawable.background_3,
-            R.drawable.background_4,
-            R.drawable.background_5,
-            R.drawable.background_6,
-            R.drawable.background_7,
-            R.drawable.background_8,
-            R.drawable.background_9,
-            R.drawable.background_10,
-            R.drawable.background_11
-    };
-
     int[] TEXT_COLORS = new int[]{
             R.color.Black,
             R.color.Orange,
@@ -56,10 +42,6 @@ public class ShareContent {
 
     public ShareContent() {
 
-    }
-
-    public int[] getBackgroundThemes() {
-        return BACKGROUND_THEMES;
     }
 
     public int[] getTextColors() {

@@ -25,13 +25,13 @@
     <string name="seeMore">Read More</string>
     <string name="allPoems">Poems</string>
     <string name="suggestions">You might like also</string>
-    <string name="search">Search poem, poet..</string>
+    <string name="search">Search poem, poet or word</string>
     <string name="THERE_IS_NO_SEARCH_RESULT">No results found.</string>
 
     <string name="allPoets">All Poets</string>
     <string name="myFavorites">My favorites</string>
     <string name="noFavorite">No favorite yet...</string>
-    <string name="searchDetail">Search poem, poet..</string>
+    <string name="searchDetail">Search poem, poet or word</string>
     <string name="rateApp">Rate App</string>
     <string name="myRecordings">My Recordings</string>
 

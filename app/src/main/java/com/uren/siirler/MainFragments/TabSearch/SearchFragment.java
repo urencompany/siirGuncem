@@ -303,6 +303,7 @@ public class SearchFragment extends BaseFragment
     private class AsyncInsertData extends AsyncTask<Void, Void, Void> {
 
         ArrayList<Sair> sairArrayList;
+        ArrayList<Sair> filteredSairArrayList;
         ArrayList<Siir> siirArrayList;
         ArrayList<Siir> siirWithDetailArrayList;
 
@@ -320,8 +321,9 @@ public class SearchFragment extends BaseFragment
         protected Void doInBackground(Void... params) {
 
             getSairList();
-            getSiirList();
-            getSiirWithDetailList();
+            getFilteredSairList();
+            getFilteredSiirList();
+            getFilteredSiirWithDetailList();
 
             return null;
         }
@@ -331,12 +333,17 @@ public class SearchFragment extends BaseFragment
             sairArrayList = sairDataSource.getSairList();
         }
 
-        private void getSiirList() {
+        private void getFilteredSairList() {
+            SairDataSource sairDataSource = new SairDataSource(getContext());
+            filteredSairArrayList = sairDataSource.getFilteredSairList(searchText);
+        }
+
+        private void getFilteredSiirList() {
             SiirDataSource siirDataSource = new SiirDataSource(getContext());
             siirArrayList = siirDataSource.getFilteredSiirList(searchText);
         }
 
-        private void getSiirWithDetailList() {
+        private void getFilteredSiirWithDetailList() {
             SiirDataSource siirDataSource = new SiirDataSource(getContext());
             siirWithDetailArrayList = siirDataSource.getFilteredDetailSiirList(searchText);
         }
@@ -352,18 +359,18 @@ public class SearchFragment extends BaseFragment
                 @Override
                 public void run() {
                     //searchResultAdapter.removeProgressLoading();
-                    setUpRecyclerView(sairArrayList, siirArrayList, siirWithDetailArrayList);
+                    setUpRecyclerView(sairArrayList, filteredSairArrayList, siirArrayList, siirWithDetailArrayList);
                 }
             });
 
         }
     }
 
-    private void setUpRecyclerView(ArrayList<Sair> sairArrayList, ArrayList<Siir> siirArrayList, ArrayList<Siir> siirWithDetailArrayList) {
+    private void setUpRecyclerView(ArrayList<Sair> sairArrayList, ArrayList<Sair> filteredSairArrayList, ArrayList<Siir> siirArrayList, ArrayList<Siir> siirWithDetailArrayList) {
 
         searchResultAdapter.clearList();
 
-        if (siirArrayList.size() == 0 && siirWithDetailArrayList.size() == 0) {
+        if (filteredSairArrayList.size() == 0 && siirArrayList.size() == 0 && siirWithDetailArrayList.size() == 0) {
             showResultView(true, getString(R.string.THERE_IS_NO_SEARCH_RESULT));
 
             return;
@@ -381,7 +388,7 @@ public class SearchFragment extends BaseFragment
 
             searchResultAdapter.setSearchText(searchText);
             searchResultAdapter.addSairList(sairArrayList);
-            searchResultAdapter.addMatchingSiirList(siirArrayList);
+            searchResultAdapter.addMatchingSiirList(filteredSairArrayList, siirArrayList);
             //searchResultAdapter.addDetailMatchingSiirList(siirWithDetailArrayList);
 
         }

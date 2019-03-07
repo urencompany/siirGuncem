@@ -61,8 +61,7 @@
                         android:id="@+id/imgBack"
                         android:layout_width="?attr/actionBarSize"
                         android:layout_height="?attr/actionBarSize"
-                        android:padding="13dp"
-                        android:src="@drawable/icon_left_arrow" />
+                        android:padding="13dp" />
 
 
                 </android.support.v7.widget.Toolbar>

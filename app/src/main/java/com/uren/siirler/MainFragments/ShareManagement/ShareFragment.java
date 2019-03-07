@@ -37,6 +37,7 @@ import com.uren.siirler.R;
 import com.uren.siirler.Utils.BitmapConversion;
 import com.uren.siirler.Utils.ClickableImage.ClickableImageView;
 import com.uren.siirler.Utils.ShapeUtil;
+import com.uren.siirler.Utils.Utils;
 import com.uren.siirler._database.datasource.SairDataSource;
 import com.uren.siirler._database.datasource.SiirDataSource;
 import com.uren.siirler._model.Sair;
@@ -44,6 +45,7 @@ import com.uren.siirler._model.Siir;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,6 +100,7 @@ public class ShareFragment extends BaseFragment
     private int textTypeIndex = 1;
     private int selectionId = 0;
     Bitmap bitmap;
+    ArrayList<int[]> backgroundColorList;
 
     private static final int INCREASE = 0;
     private static final int DECREASE = 1;
@@ -164,6 +167,19 @@ public class ShareFragment extends BaseFragment
                 0, GradientDrawable.RECTANGLE, 15, 0));
     }
 
+    private void init() {
+        imgCancel.setOnClickListener(this);
+        imgOptions.setOnClickListener(this);
+        imgForward.setOnClickListener(this);
+        imgBackArrrow.setOnClickListener(this);
+        imgForwardArrow.setOnClickListener(this);
+        rlMain.setOnClickListener(this);
+
+        shareContent = new ShareContent();
+        backgroundColorList = Utils.getBackgroundColorList(getContext());
+        setAllInvisible();
+    }
+
     private void openMoreMenu() {
         PopupMenu popupMenu = new PopupMenu(getContext(), imgOptions);
         popupMenu.inflate(R.menu.share_menu);
@@ -218,35 +234,42 @@ public class ShareFragment extends BaseFragment
     }
 
     private void setImages() {
+        //background
+        int startColor = getContext().getResources().getColor(backgroundColorList.get(imageIndex)[0]);
+        int endColor = getContext().getResources().getColor(backgroundColorList.get(imageIndex)[1]);
+        Glide.with(getContext())
+                .load(ShapeUtil.getGradientBackground(startColor, endColor))
+                .apply(RequestOptions.centerCropTransform())
+                .into(imgBackground);
+        //imgCancel
+        Glide.with(getContext())
+                .load(R.drawable.icon_black_cancel)
+                .apply(RequestOptions.fitCenterTransform())
+                .into(imgCancel);
+        //imgMore
         Glide.with(getContext())
                 .load(R.drawable.icon_more_vertical)
                 .apply(RequestOptions.fitCenterTransform())
                 .into(imgOptions);
+        //imgBackArrrow
         Glide.with(getContext())
                 .load(R.drawable.icon_back_white)
                 .apply(RequestOptions.fitCenterTransform())
                 .into(imgBackArrrow);
+        //imgForwardArrow
         Glide.with(getContext())
                 .load(R.drawable.icon_forward_white)
                 .apply(RequestOptions.fitCenterTransform())
                 .into(imgForwardArrow);
+        //imgForward
         Glide.with(getContext())
-                .load(shareContent.BACKGROUND_THEMES[imageIndex])
-                .apply(RequestOptions.centerCropTransform())
-                .into(imgBackground);
+                .load(R.drawable.icon_whatsapp)
+                .apply(RequestOptions.fitCenterTransform())
+                .into(imgForward);
+
     }
 
-    private void init() {
-        imgCancel.setOnClickListener(this);
-        imgOptions.setOnClickListener(this);
-        imgForward.setOnClickListener(this);
-        imgBackArrrow.setOnClickListener(this);
-        imgForwardArrow.setOnClickListener(this);
-        rlMain.setOnClickListener(this);
 
-        shareContent = new ShareContent();
-        setAllInvisible();
-    }
 
     private void setVariables() {
         getPoem();
@@ -407,21 +430,26 @@ public class ShareFragment extends BaseFragment
     private void setPhotoImage(int type) {
 
         if (type == INCREASE) {
-            if (imageIndex == (shareContent.getBackgroundThemes().length - 1))
+            if (imageIndex == (backgroundColorList.size() - 1))
                 imageIndex = 0;
             else
                 imageIndex++;
         } else if (type == DECREASE) {
             if (imageIndex == 0)
-                imageIndex = shareContent.getBackgroundThemes().length - 1;
+                imageIndex = backgroundColorList.size() - 1;
             else
                 imageIndex--;
         }
 
+        //background
+
+        int startColor = getContext().getResources().getColor(backgroundColorList.get(imageIndex)[0]);
+        int endColor = getContext().getResources().getColor(backgroundColorList.get(imageIndex)[1]);
         Glide.with(getContext())
-                .load(shareContent.getBackgroundThemes()[imageIndex])
+                .load(ShapeUtil.getGradientBackground(startColor, endColor))
                 .apply(RequestOptions.fitCenterTransform())
                 .into(imgBackground);
+
     }
 
 

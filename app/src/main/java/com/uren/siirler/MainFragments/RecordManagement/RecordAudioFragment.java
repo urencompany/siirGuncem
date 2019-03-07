@@ -52,6 +52,7 @@ import com.uren.siirler.R;
 import com.uren.siirler.Utils.AdMobUtil.AdMobUtils;
 import com.uren.siirler.Utils.ClickableImage.ClickableImageView;
 import com.uren.siirler.Utils.DialogBoxUtil.DialogBoxUtil;
+import com.uren.siirler.Utils.ShapeUtil;
 import com.uren.siirler.Utils.Utils;
 import com.uren.siirler._database.datasource.SairDataSource;
 import com.uren.siirler._database.datasource.SiirDataSource;
@@ -322,8 +323,11 @@ public class RecordAudioFragment extends BaseFragment
         playView.setColorFilter(ContextCompat.getColor(getContext(), R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
 
         //contentLayout.setBackgroundColor(Util.getDarkerColor(color));
+        ArrayList<int[]> backgroundColorList = Utils.getBackgroundColorList(getContext());
+        int startColor = getContext().getResources().getColor(backgroundColorList.get(imageIndex)[0]);
+        int endColor = getContext().getResources().getColor(backgroundColorList.get(imageIndex)[1]);
         Glide.with(getContext())
-                .load(Utils.getBackgroundList(getContext())[imageIndex])
+                .load(ShapeUtil.getGradientBackground(startColor, endColor))
                 .apply(RequestOptions.centerCropTransform())
                 .into(imgBackground);
 

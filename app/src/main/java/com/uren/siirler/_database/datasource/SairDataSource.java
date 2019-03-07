@@ -145,6 +145,29 @@ public class SairDataSource {
         return sairArrayList;
     }
 
+    public ArrayList<Sair> getFilteredSairList(String searchText) {
+
+        ArrayList<Sair> sairArrayList = new ArrayList<>();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        cursor =
+                db.rawQuery(
+                        "SELECT Sairler.id,Sairler.ad,Sairler.isDisplayed,Sairler.isPopular " +
+                                " FROM Sairler" +
+                                " WHERE Sairler.ad LIKE '%" + searchText + "%'",
+                        null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Sair sair = setSairColumns(cursor);
+            sairArrayList.add(sair);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        db.close();
+        return sairArrayList;
+    }
+
+
     /***********************************************************************/
     private Sair setSairColumns(Cursor cursor) {
 
@@ -168,7 +191,7 @@ public class SairDataSource {
 
 
         //sair.setProfilePicBitmap(idPhotoHashmap.get(sair.getId()));
-        sair.setProfilePicIndex(NumericConstants.profileSoruceArray[sair.getId()-1]);
+        sair.setProfilePicIndex(NumericConstants.profileSoruceArray[sair.getId() - 1]);
 
         return sair;
     }

@@ -126,6 +126,7 @@ public class SinglePoemFragment extends BaseFragment
 
             //setting content
             init();
+            setImages();
             setVariables();
 
         }
@@ -152,6 +153,20 @@ public class SinglePoemFragment extends BaseFragment
         imgFavorite.setOnClickListener(this);
     }
 
+    private void setImages() {
+        Glide.with(getContext())
+                .load(R.drawable.icon_left_arrow)
+                .apply(RequestOptions.fitCenterTransform())
+                .into(imgBack);
+        Glide.with(getContext())
+                .load(R.drawable.icon_share2)
+                .apply(RequestOptions.fitCenterTransform())
+                .into(imgShare);
+        Glide.with(getContext())
+                .load(R.drawable.icon_microphone)
+                .apply(RequestOptions.fitCenterTransform())
+                .into(imgRecord);
+    }
 
     private void setVariables() {
         getPoem();
